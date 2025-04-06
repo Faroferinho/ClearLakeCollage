@@ -17,7 +17,7 @@ public class AlunoController {
     @Autowired
     private AlunoService alunoService;
 
-    @PostMapping(Constant.API_ALUNO + '${id}')
+    @PostMapping(Constant.API_ALUNO + "/{id}")
     public ResponseEntity<Aluno> createCustomer(@RequestBody Aluno aluno){
         Aluno savedAluno = alunoService.save(aluno);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAluno);
