@@ -11,6 +11,7 @@ public class Aluno {
     @Id
     String id;
     String nome;
+    String telefone;
     String email;
     String endereco;
 }
