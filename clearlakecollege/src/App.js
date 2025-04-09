@@ -36,7 +36,7 @@ export default function(){
   }
 
   const handleDelete = async (id) => {
-    const response = await fetch(url + id, {method: "DELETE"});
+    const response = await fetch(`http://localhost:8081/projeto/api/v1/aluno/${id}`, {method: "DELETE"});
     if(response.ok){
       setStudents(students.filter(b => b.id !== id));
     }
@@ -52,7 +52,7 @@ export default function(){
           <input type='text' placeholder='email' value={student.email} onChange={(e) => setStudent({...student, email: e.target.value})}/><br/>
           <input type='text' placeholder='endereço' value={student.endereco} onChange={(e) => setStudent({...student, endereco: e.target.value})}/><br/>
         </div>
-        <button>
+        <button onClick={handleSubmit}>
           {edition ? "Atualizar" : "Adicionar"}
         </button>
       </div>
@@ -75,8 +75,8 @@ export default function(){
               <td>{stu.email}</td>
               <td>{stu.endereco}</td>
               <td>
-                <button>🖋️</button>
-                <button>❌</button>
+                <button onClick={handleEdit}>🖋️</button>
+                <button onClick={handleDelete}>❌</button>
               </td>
             </tr>
           ))}
