@@ -17,16 +17,16 @@ public class AlunoController {
     @Autowired
     private AlunoService alunoService;
 
-    @PostMapping(Constant.API_ALUNO + "/{id}")
+    @PostMapping(Constant.API_ALUNO)
     public ResponseEntity<Aluno> createCustomer(@RequestBody Aluno aluno){
         Aluno savedAluno = alunoService.save(aluno);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedAluno);
     }
 
-    @PostMapping(Constant.API_ALUNO)
+    @PutMapping(Constant.API_ALUNO)
     public ResponseEntity<Aluno> update(@RequestBody Aluno aluno){
-        Aluno savedAluno = alunoService.save(aluno);
-        return ResponseEntity.ok(savedAluno);
+        Aluno updatedAluno = alunoService.save(aluno);
+        return ResponseEntity.status(HttpStatus.CREATED).body(updatedAluno);
     }
 
     @DeleteMapping(Constant.API_ALUNO + "/{id}")
