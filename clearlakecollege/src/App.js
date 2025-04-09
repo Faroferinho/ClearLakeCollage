@@ -29,4 +29,48 @@ export default function(){
       setEdition(null);
     }
   }
+
+  return (
+    <div>
+      <div class="form">
+        <h1>Inserção Alunos</h1>
+        <div>
+          <input type='text' placeholder='nome' value={student.nome} onChange={(e) => setStudent({...student, nome: e.target.value})}/><br/>
+          <input type='text' placeholder='telefone' value={student.telefone} onChange={(e) => setStudent({...student, telefone: e.target.value})}/><br/>
+          <input type='text' placeholder='email' value={student.email} onChange={(e) => setStudent({...student, email: e.target.value})}/><br/>
+          <input type='text' placeholder='endereço' value={student.endereco} onChange={(e) => setStudent({...student, endereco: e.target.value})}/><br/>
+        </div>
+        <button>
+          {edition ? "Atualizar" : "Adicionar"}
+        </button>
+      </div>
+
+      <div class="table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>E-mail</th>
+            <th>Endereço</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {students.map((stu, index) => (
+            <tr key={index}>
+              <td>{stu.nome}</td>
+              <td>{stu.telefone}</td>
+              <td>{stu.email}</td>
+              <td>{stu.endereco}</td>
+              <td>
+                
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </div>
+    </div>
+
+    
+  );
 }
