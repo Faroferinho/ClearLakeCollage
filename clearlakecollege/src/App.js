@@ -30,6 +30,18 @@ export default function(){
     }
   }
 
+  const handleEdit = (stu) => {
+    setStudent(stu)
+    setEdition(stu.id)
+  }
+
+  const handleDelete = async (id) => {
+    const response = await fetch(url + id, {method: "DELETE"});
+    if(response.ok){
+      setStudents(students.filter(b => b.id !== id));
+    }
+  }
+
   return (
     <div>
       <div class="form">
@@ -63,7 +75,8 @@ export default function(){
               <td>{stu.email}</td>
               <td>{stu.endereco}</td>
               <td>
-                
+                <button>🖋️</button>
+                <button>❌</button>
               </td>
             </tr>
           ))}
