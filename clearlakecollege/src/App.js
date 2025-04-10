@@ -29,6 +29,7 @@ export default function StudentsCRUD(){
         edition ? students.map(b => (b.id === edition ? newStudent : b)) : [...students, newStudent]
       );
       setEdition(null);
+      setForm({nome: "", telefone: "", email: "", endereco: "" });
     }
   };
 
@@ -52,7 +53,7 @@ export default function StudentsCRUD(){
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
       
       <div className="container-fluid p-5  text-white text-center">
-        <p className='h1'>Cadastro</p>
+        <p className='h1'>{edition ? "Atualização" : "Cadastro"}</p>
         
         <p className='h5'>{edition ? "Atualize os dados de um aluno" : "Insira o nome de Novos Alunos"}</p>
 
@@ -85,32 +86,36 @@ export default function StudentsCRUD(){
 
       </div>
 
-      <h1 className='text-white'>Lista de Alunos</h1>
-      <table class="table table-dark table-borderless">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Telefone</th>
-            <th>E-mail</th>
-            <th>Endereço</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {students.map((stu, index) => (
-            <tr key={index}>
-              <td>{stu.nome}</td>
-              <td>{stu.telefone}</td>
-              <td>{stu.email}</td>
-              <td>{stu.endereco}</td>
-              <td class="btn-group btn-group-lg">
-                <button class="btn btn-info" onClick={() => handleEdit(stu)}>🖋️</button>
-                <button class="btn btn-danger" onClick={() => handleDelete(stu.id)}>❌</button>
-              </td>
+      <div className='bg-dark'>
+        <h1 className='text-white text-center'>Lista de Alunos</h1>
+        <table class="table table-dark table-borderless">
+          <thead>
+            <tr className='text-white text-center'>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>E-mail</th>
+              <th>Endereço</th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {students.map((stu, index) => (
+              <tr key={index}>
+                <td>{stu.nome}</td>
+                <td>{stu.telefone}</td>
+                <td>{stu.email}</td>
+                <td>{stu.endereco}</td>
+                <td>
+                  <div class="btn-group btn-group-lg">
+                    <button class="btn btn-success" onClick={() => handleEdit(stu)}>🖋️</button>
+                    <button class="btn btn-danger" onClick={() => handleDelete(stu.id)}>❌</button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
 
     </div>
