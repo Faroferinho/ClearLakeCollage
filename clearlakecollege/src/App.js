@@ -5,7 +5,7 @@ const API_URL = "http://localhost:8081/projeto/api/v1/aluno";
 
 export default function StudentsCRUD(){
   const [students, setStudents] = useState([]);
-  const [student, setStudent] = useState({nome: "", telefone: "", email: "", endereco: ""});
+  const [form, setForm] = useState({nome: "", telefone: "", email: "", endereco: ""});
   const [edition, setEdition] = useState(null);
   
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function StudentsCRUD(){
   }, []);
 
   const handleSubmit = async () => {
-    const newStudent = student;
+    const newStudent = form;
     const method = edition ? "PUT" : "POST";
 
     const response = await fetch(API_URL, {
@@ -33,7 +33,7 @@ export default function StudentsCRUD(){
   };
 
   const handleEdit = (stu) => {
-    setStudent(stu);
+    setForm(stu);
     setEdition(stu.id);
   };
 
@@ -45,19 +45,33 @@ export default function StudentsCRUD(){
   };
 
   return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold mb-4 text-center">Cadastro</h1>
-        <sub>Insira o nome de Novos Alunos</sub>
-        <div class="form" className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-          <input type='text' placeholder='nome' value={student.nome} onChange={(e) => setStudent({...student, nome: e.target.value})}/><br/>
-          <input type='text' placeholder='telefone' value={student.telefone} onChange={(e) => setStudent({...student, telefone: e.target.value})}/><br/>
-          <input type='text' placeholder='email' value={student.email} onChange={(e) => setStudent({...student, email: e.target.value})}/><br/>
-          <input type='text' placeholder='endereço' value={student.endereco} onChange={(e) => setStudent({...student, endereco: e.target.value})}/><br/>
-          <button onClick={handleSubmit}>
+    <div>
+      
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+      
+      <div class="container-fluid p-5 bg-dark text-white text-center">
+        <p className='h1'>Cadastro</p>
+        
+        <p className='h5'>Insira o nome de Novos Alunos</p>
+
+        <div>
+          
+          <input type='text' placeholder='Nome' value={form.nome} onChange={(e) => setForm({...form, nome: e.target.value})}/><br/>
+          
+          <input type='text' placeholder='Telefone' value={form.telefone} onChange={(e) => setForm({...form, telefone: e.target.value})}/><br/>
+          
+          <input type='text' placeholder='E-mail' value={form.email} onChange={(e) => setForm({...form, email: e.target.value})}/><br/>
+          
+          <input type='text' placeholder='Endereço' value={form.endereco} onChange={(e) => setForm({...form, endereco: e.target.value})}/><br/>
+          
+          <button button type="button" class="btn btn-primary" onClick={handleSubmit}>
             {edition ? "Atualizar" : "Adicionar"}
           </button>
+
         </div>
+
       </div>
 
       <div class="table">
@@ -78,9 +92,9 @@ export default function StudentsCRUD(){
               <td>{stu.telefone}</td>
               <td>{stu.email}</td>
               <td>{stu.endereco}</td>
-              <td>
-                <button onClick={() => handleEdit(stu)}>🖋️</button>
-                <button onClick={() => handleDelete(stu.id)}>❌</button>
+              <td class="btn-group btn-group-lg">
+                <button type="button" class="btn btn-info" onClick={() => handleEdit(stu)}>🖋️</button>
+                <button type="button" class="btn btn-danger" onClick={() => handleDelete(stu.id)}>❌</button>
               </td>
             </tr>
           ))}
