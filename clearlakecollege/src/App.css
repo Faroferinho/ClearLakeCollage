@@ -7,9 +7,18 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: #ffffff;
+
+}
+
+.background{
+  background-color: #232a38; 
 }
 
 input{
   border: #282c34;
   border-radius: 5px;
+}
+
+label{
+  color: darkslategrey;
 }

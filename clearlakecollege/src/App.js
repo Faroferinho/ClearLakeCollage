@@ -45,26 +45,37 @@ export default function StudentsCRUD(){
   };
 
   return (
-    <div>
+    <div className='background'>
       
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
       
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
       
-      <div class="container-fluid p-5 bg-dark text-white text-center">
+      <div className="container-fluid p-5  text-white text-center">
         <p className='h1'>Cadastro</p>
         
-        <p className='h5'>Insira o nome de Novos Alunos</p>
+        <p className='h5'>{edition ? "Atualize os dados de um aluno" : "Insira o nome de Novos Alunos"}</p>
 
-        <div>
+        <div className='container mt-3'>
+          <div class="form-floating mb-3 mt-3">
+            <input class="form-control" type='text' placeholder='Nome' value={form.nome} onChange={(e) => setForm({...form, nome: e.target.value})}/><br/>
+            <label for="nome">Nome</label>
+          </div>
           
-          <input type='text' placeholder='Nome' value={form.nome} onChange={(e) => setForm({...form, nome: e.target.value})}/><br/>
+          <div class="form-floating mb-3 mt-3">
+            <input class="form-control" type='text' placeholder='Telefone' value={form.telefone} onChange={(e) => setForm({...form, telefone: e.target.value})}/><br/>
+            <label for="telefone">Telefone</label>
+          </div>
           
-          <input type='text' placeholder='Telefone' value={form.telefone} onChange={(e) => setForm({...form, telefone: e.target.value})}/><br/>
+          <div class="form-floating mb-3 mt-3">
+            <input class="form-control" type='text' placeholder='E-mail' value={form.email} onChange={(e) => setForm({...form, email: e.target.value})}/><br/>
+            <label for="E-Mail">E-Mail</label>
+          </div>
           
-          <input type='text' placeholder='E-mail' value={form.email} onChange={(e) => setForm({...form, email: e.target.value})}/><br/>
-          
-          <input type='text' placeholder='Endereço' value={form.endereco} onChange={(e) => setForm({...form, endereco: e.target.value})}/><br/>
+          <div class="form-floating mb-3 mt-3">
+            <input class="form-control" type='text' placeholder='Endereço' value={form.endereco} onChange={(e) => setForm({...form, endereco: e.target.value})}/><br/>
+            <label for="endereco">Endereço</label>
+          </div>
           
           <button button type="button" class="btn btn-primary" onClick={handleSubmit}>
             {edition ? "Atualizar" : "Adicionar"}
@@ -74,8 +85,8 @@ export default function StudentsCRUD(){
 
       </div>
 
-      <div class="table">
-        <h1>Lista de Alunos</h1>
+      <h1 className='text-white'>Lista de Alunos</h1>
+      <table class="table table-dark table-borderless">
         <thead>
           <tr>
             <th>Nome</th>
@@ -93,15 +104,15 @@ export default function StudentsCRUD(){
               <td>{stu.email}</td>
               <td>{stu.endereco}</td>
               <td class="btn-group btn-group-lg">
-                <button type="button" class="btn btn-info" onClick={() => handleEdit(stu)}>🖋️</button>
-                <button type="button" class="btn btn-danger" onClick={() => handleDelete(stu.id)}>❌</button>
+                <button class="btn btn-info" onClick={() => handleEdit(stu)}>🖋️</button>
+                <button class="btn btn-danger" onClick={() => handleDelete(stu.id)}>❌</button>
               </td>
             </tr>
           ))}
         </tbody>
-      </div>
-    </div>
+      </table>
 
-    
+
+    </div>
   );
 }
