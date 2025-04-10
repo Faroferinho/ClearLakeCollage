@@ -33,7 +33,7 @@ export default function StudentsCRUD(){
   };
 
   const handleEdit = (stu) => {
-    setStudents(stu);
+    setStudent(stu);
     setEdition(stu.id);
   };
 
@@ -45,11 +45,11 @@ export default function StudentsCRUD(){
   };
 
   return (
-    <div className='max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg'>
-      <div>
+    <div className="p-6">
+      <div className="mb-6">
         <h1 className="text-2xl font-bold mb-4 text-center">Cadastro</h1>
         <sub>Insira o nome de Novos Alunos</sub>
-        <div class="form">
+        <div class="form" className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
           <input type='text' placeholder='nome' value={student.nome} onChange={(e) => setStudent({...student, nome: e.target.value})}/><br/>
           <input type='text' placeholder='telefone' value={student.telefone} onChange={(e) => setStudent({...student, telefone: e.target.value})}/><br/>
           <input type='text' placeholder='email' value={student.email} onChange={(e) => setStudent({...student, email: e.target.value})}/><br/>
